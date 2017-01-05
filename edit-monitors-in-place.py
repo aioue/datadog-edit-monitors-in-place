@@ -37,7 +37,6 @@ while True:
             imported_datadog_monitors = json.load(infile)
             break
         except ValueError as err:
-            infile.close()
             print("Check your json and try again!", err)
 # Update existing monitors
 for monitor in imported_datadog_monitors:

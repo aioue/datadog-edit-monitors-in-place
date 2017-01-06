@@ -30,11 +30,14 @@ print "Number of monitors: " + str(len(datadog_monitors))
 with open('existing_monitors.json', 'w') as outfile:
     json.dump(datadog_monitors, outfile, indent=2, sort_keys=False)
 
-wait = raw_input("Edit 'existing_monitors.json', save, then press a key to upload the changes.")
-
-with open('existing_monitors.json', 'r') as infile:
-    imported_datadog_monitors = json.load(infile)
-
+while True:
+    wait = raw_input("Edit 'existing_monitors.json', save, then press a key to upload the changes.")
+    with open('existing_monitors.json', 'r') as infile:
+        try:
+            imported_datadog_monitors = json.load(infile)
+            break
+        except ValueError as err:
+            print("Check your json and try again!", err)
 # Update existing monitors
 for monitor in imported_datadog_monitors:
     print "Uploading " + monitor['name']

@@ -38,6 +38,7 @@ while True:
             break
         except ValueError as err:
             print("Check your json and try again!", err)
+            
 # Update existing monitors
 for monitor in imported_datadog_monitors:
     print "Uploading " + monitor['name']
